@@ -21,7 +21,8 @@ export default class App extends Component {
       expiryDate: '',
       minPurchase: 0,
       discount: 0,
-      couponApplied: false
+      couponApplied: false,
+      isButtonDisabled:true
     }
   }
   async componentDidMount() {
@@ -58,6 +59,7 @@ export default class App extends Component {
         value: row.name
       }
     })
+    this.setState({coupons:result.data})
     this.setState({ data: formatData })
     console.log("mounted", formatData);
   }
@@ -91,6 +93,17 @@ export default class App extends Component {
     console.log(body);
     const result = await axios.post('https://antcoupon.herokuapp.com/coupon/create', body)
     console.log(result.data);
+    this.setState({
+      couponName: '',
+      couponType: '',
+      expiryDate: '',
+      minPurchase: 0,
+      discount: 0,
+        
+    })
+
+    this.getData()
+    
 
   }
   handleSelect = event => {
@@ -122,7 +135,7 @@ export default class App extends Component {
               if (!discount.data.valid) {
                 toast.error("Coupon not applied, it might have expired", {
                   position: "top-right",
-                  autoClose: 5000,
+                  autoClose: 3000,
                   hideProgressBar: false,
                   closeOnClick: true,
                   pauseOnHover: true,
@@ -163,7 +176,7 @@ export default class App extends Component {
             })
           }}> +</button>
           <button onClick={() => {
-            this.setState({ couponApplied: false, data: [] })
+            this.setState({ couponApplied: false, data: [],cartAmount:0 })
           }}>
             Reset
       </button>
@@ -177,7 +190,7 @@ export default class App extends Component {
           </div>
         </div>
 
-        <div>
+        <div className='coupon-div'>
           <h2>Create Coupon</h2>
 
           <form>
@@ -207,13 +220,15 @@ export default class App extends Component {
               onChange={(e) => {
                 this.handleChange(e)
               }} /><br /><br />
-            <button type="submit" onClick={async (e) => { this.handleSubmit(e) }}> Create </button>
+            <button type="submit"  onClick={async (e) => { 
+              this.handleSubmit(e)
+               }}> Create </button>
 
           </form>
         </div>
 
-        <div>
-          <h2>Coupon List</h2>
+        <div className="lists">
+          <h2 className="head">Coupon List</h2>
           <div className="card-content">
             <span className="">Coupon name</span>
             <span>Minimum Purchase</span>

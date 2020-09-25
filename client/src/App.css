@@ -13,6 +13,25 @@
   }
 }
 
+.coupon-div{
+  padding: 15px;
+  text-align: center;
+  background-color: antiquewhite;
+  border-radius: 5px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 15px
+}
+.lists {
+  
+  background-color: whitesmoke;
+    padding: 15px;
+    margin: 15px;
+}
+.head{
+  text-align: center;
+}
+
 .card-content{
   display: flex;
   flex-direction: row;
