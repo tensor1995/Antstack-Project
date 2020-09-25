@@ -1,14 +1,9 @@
-# Antstack-Project
-A project
+# Antstack-Assignment-Project
 
-cd root directory
-npm install
-npm run dev //run backend server
-
-cd client 
-npm install
-npm run start //start front end server
+cd client \
+npm install \
+npm run start \
 
 
-Live demo url
+Live demo url \
 https://antcoupon.herokuapp.com/
