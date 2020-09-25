@@ -2,7 +2,7 @@
 
 cd client \
 npm install \
-npm run start \
+npm run start
 
 
 Live demo url \
